@@ -17,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+Route::get('/list-messages', MailController::class.'@sendEmail')->name('listMessages');
+
 
 // email routes
-Route::get('/send-email', MailController::class.'@sendEmail');
+Route::post('/send-email', MailController::class.'@sendEmail')->name('send-email');
+Route::get('/email', MailController::class.'@indexEmail')->name('email');
 
 // sms routes
-Route::get('/send-sms', SmsController::class.'@sendSms');
+Route::post('/send-sms', SmsController::class.'@sendSms')->name('send-sms');
+Route::get('/sms', SmsController::class.'@indexSms')->name('sms');

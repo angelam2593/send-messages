@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SmsRequest;
 use Nexmo\Laravel\Facade\Nexmo;
 
 class SmsController extends Controller
 {
 
-    public function sendSms()
+    public function sendSms(SmsRequest $request)
     {
         Nexmo::message()->send([
-            'to'   => '46732635258',
+            'to'   => $request->mobile,
             'from' => '46732635258',
             'text' => 'Test sms',
         ]);
 
-        return 'Sms was sent';
+        return redirect()->back()->with('message', 'Sms was sent');
+    }
+
+    public function indexSms()
+    {
+        return view('sendSms');
     }
 
 }

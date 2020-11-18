@@ -31,6 +31,6 @@ class TrioptimaMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Test Mail from Angela')->view('emails.listEmails');
+        return $this->subject('Test Mail from Angela')->view('sendEmail');
     }
 }

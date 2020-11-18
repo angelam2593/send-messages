@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SmsController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-Route::get('/list-messages', MailController::class.'@sendEmail')->name('listMessages');
+Route::get('/list-messages', MessageController::class.'@listMessages')->name('listMessages');
 
 
 // email routes

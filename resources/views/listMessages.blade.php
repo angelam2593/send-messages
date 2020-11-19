@@ -56,7 +56,7 @@
                             <a class="dropdown-item" href="#">All messages</a>
                             <a class="dropdown-item" href="#">Fetched messages</a>
                             <a class="dropdown-item" href="#">Failed messages</a>
-                        </div> <a href="">ASC</a> <a href="">DESC</a>
+                        </div>
                     </div>
                     <br>
                     <div class="btn btn-primary btn-danger">Delete selected messages</div>

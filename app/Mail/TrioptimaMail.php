@@ -11,6 +11,7 @@ class TrioptimaMail extends Mailable
     use Queueable, SerializesModels;
 
     public $details;
+    public $trioptimaMail = 'angelamadjirova@gmail.com';
 
 
     /**
@@ -31,6 +32,9 @@ class TrioptimaMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Test Mail from Angela')->view('sendEmail');
+
+        return $this->subject($this->details['subject'])
+            ->view('trioptimaEmail')
+            ->from($this->trioptimaMail);
     }
 }

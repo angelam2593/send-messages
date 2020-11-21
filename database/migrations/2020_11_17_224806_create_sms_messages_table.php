@@ -18,10 +18,12 @@ class CreateSmsMessagesTable extends Migration
             $table->string('content');
             $table->string('recipient_mobile');
             $table->timestamp('sent_at');
-            $table->time('deleted_at');
+            $table->time('deleted_at')->nullable();
+            $table->text('error')->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

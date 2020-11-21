@@ -16,6 +16,7 @@ class SmsRequest extends FormRequest
         return true;
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +25,8 @@ class SmsRequest extends FormRequest
     public function rules()
     {
         return [
-            'mobile' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+            'mobile'     => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'smsContent' => 'required',
         ];
     }
 }

@@ -17,6 +17,7 @@ class MailRequest extends FormRequest
         return true;
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,7 +26,11 @@ class MailRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'required|email'
+            'email'         => 'required|email',
+            'subject'       => 'required',
+            'emailContent'  => 'required|string',
+            'cc_recipient'  => 'nullable|email',
+            'bcc_recipient' => 'nullable|email',
         ];
     }
 }

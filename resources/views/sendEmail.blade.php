@@ -33,7 +33,7 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row" style="margin-top: 150px;">
+    <div class="row" style="margin-top: 80px;">
 
         <div class="col-md-12">
             @if ($errors->any())
@@ -60,7 +60,13 @@
                         <p>Please submit a valid e-mail address and the email's content to sent a message.</p>
                         <input type="text" name="email" class="form-control" id="email" placeholder="Email">
                         <br>
-                        <textarea name="email" class="form-control" rows="4" id="summernote" placeholder="Content"></textarea>
+                        <input type="text" name="subject" class="form-control" id="subject" placeholder="Subject">
+                        <br>
+                        <input type="text" name="cc_recipient" class="form-control" id="cc_recipient" placeholder="CC">
+                        <br>
+                        <input type="text" name="bcc_recipient" class="form-control" id="email" placeholder="BCC">
+                        <br>
+                        <textarea name="emailContent" class="form-control" rows="4" id="summernote" placeholder="emailContent"></textarea>
                     </div>
                     <button type="submit" class="btn btn-info">Send email</button>
                 </form>

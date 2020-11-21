@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class EmailMessage extends Model
 {
     use HasFactory;
+
 }

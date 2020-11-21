@@ -18,10 +18,11 @@ class CreateEmailMessagesTable extends Migration
             $table->string('content');
             $table->string('subject');
             $table->string('recipient_email');
-            $table->string('recipient_cc');
-            $table->string('recipient_bcc');
+            $table->string('recipient_cc')->nullable();
+            $table->string('recipient_bcc')->nullable();
+            $table->text('error')->nullable();
             $table->timestamp('sent_at');
-            $table->time('deleted_at');
+            $table->time('deleted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SmsMessage extends Model
 {
     use HasFactory;
+
+    public function messages()
+    {
+        return $this->belongsToMany('App\Models\Message');
+    }
 }

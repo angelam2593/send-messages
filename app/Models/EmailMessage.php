@@ -9,4 +9,9 @@ class EmailMessage extends Model
 {
     use HasFactory;
 
+    public function messages()
+    {
+        return $this->belongsToMany('App\Models\Message');
+    }
+
 }

@@ -7,6 +7,7 @@ use App\Mail\TrioptimaMail;
 use App\Models\EmailMessage;
 use App\Models\Message;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -73,7 +74,7 @@ class MailController extends Controller
 
     public function listAllEmailMessages()
     {
-        $messages = EmailMessage::all();
+        $messages = EmailMessage::paginate(5);
 
         return view('listEmailMessages')->with('messages', $messages);
 
@@ -82,7 +83,7 @@ class MailController extends Controller
 
     public function listFetchedEmailMessages()
     {
-        $messages = EmailMessage::all()->whereNotNull('error');
+        $messages = EmailMessage::whereNotNull('error')->paginate(5);
 
         return view('listEmailMessages')->with('messages', $messages);
     }
@@ -90,8 +91,14 @@ class MailController extends Controller
 
     public function listFailedEmailMessages()
     {
-        $messages = EmailMessage::all()->whereNull('error');
+        $messages = EmailMessage::whereNull('error')->paginate(5);
 
         return view('listEmailMessages')->with('messages', $messages);
+    }
+
+
+    public function deleteMail(Request $request)
+    {
+
     }
 }

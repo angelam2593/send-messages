@@ -22,10 +22,14 @@ class CreateEmailMessagesTable extends Migration
             $table->string('recipient_bcc')->nullable();
             $table->text('error')->nullable();
             $table->timestamp('sent_at');
-            $table->time('deleted_at')->nullable();
-            $table->integer('message_id');
+            $table->integer('message_id')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
         });
+
+        //Schema::table('email_messages', function($table) {
+        //   $table->foreign('message_id')->references('id')->on('messages');
+        //});
     }
 
     /**

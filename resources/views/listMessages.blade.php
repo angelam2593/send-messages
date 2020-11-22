@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="btn btn-primary btn-danger">Delete selected messages</div>
+                    <a class="btn btn-primary btn-danger" href="{{ route('deleteMail') }}">Delete selected messages</a>
                     <br>
                     <br>
                     <table class="table">
@@ -95,7 +95,7 @@
                                 <td>{{ $message->content }}</td>
                                 <td>{{ $message->sent_at }}</td>
                                 <td>{{ $message->error ? 'success' : 'failed' }}</td>
-                                <td><input type="checkbox" aria-label="Checkbox for following text input">&nbsp;Delete?</td>
+                                <td><input type="checkbox" name="deleteMail[]" value="{{ $message->id }}" aria-label="Checkbox for following text input">&nbsp;Delete?</td>
                             </tr>
                         @endforeach
                         </tbody>

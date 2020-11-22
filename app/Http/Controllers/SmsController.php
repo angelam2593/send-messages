@@ -59,7 +59,7 @@ class SmsController extends Controller
 
     public function listAllSmsMessages()
     {
-        $messages = SmsMessage::all();
+        $messages = SmsMessage::paginate(5);
 
         return view('listSmsMessages')->with('messages', $messages);
 
@@ -68,7 +68,7 @@ class SmsController extends Controller
 
     public function listFetchedSmsMessages()
     {
-        $messages = SmsMessage::all()->whereNotNull('error');
+        $messages = SmsMessage::whereNotNull('error')->paginate(5);
 
         return view('listSmsMessages')->with('messages', $messages);
     }
@@ -76,7 +76,7 @@ class SmsController extends Controller
 
     public function listFailedSmsMessages()
     {
-        $messages = SmsMessage::all()->whereNull('error');
+        $messages = SmsMessage::whereNull('error')->paginate(5);
 
         return view('listSmsMessages')->with('messages', $messages);
     }

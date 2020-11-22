@@ -64,9 +64,10 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{{ route('listAllSmsMessages') }}" id="btnListAllMessages">All
                             messages</a>
-                        <a class="dropdown-item" href="{{ route('listFetchedSmsMessages') }}" id="btnListFetchedMessages">Fetched
+                        <a class="dropdown-item" href="{{ route('listFetchedSmsMessages') }}"
+                           id="btnListFetchedMessages">Fetched
                             messages</a>
-                        <a class="dropdown-item" href="{{ route('listFailedSmsMessages') }}" id="btnListFailedMessages"
+                        <a class="dropdown-item" href="{{ route('listFailedSmsMessages') }}"
                            id="btnListFailedMessages">Failed
                             messages</a>
                     </div>
@@ -100,15 +101,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
+                    {{ $messages->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>

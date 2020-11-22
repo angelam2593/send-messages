@@ -26,7 +26,7 @@ Route::get('/email', MailController::class.'@indexEmail')->name('email');
 Route::get('/list-all-email-messages', MailController::class.'@listAllEmailMessages')->name('listAllEmailMessages');
 Route::get('/list-fetched-email-messages', MailController::class.'@listFetchedEmailMessages')->name('listFetchedEmailMessages');
 Route::get('/list-failed-email-messages', MailController::class.'@listFailedEmailMessages')->name('listFailedEmailMessages');
-Route::delete('/delete-email', MailController::class.'@deleteMail')->name('deleteMail');
+Route::post('/delete-email', MailController::class.'@deleteMail')->name('deleteMail');
 
 // sms routes   add middleware
 Route::post('/send-sms', SmsController::class.'@sendSms')->name('send-sms');

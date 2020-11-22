@@ -64,7 +64,8 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="{{ route('listAllEmailMessages') }}" id="btnListAllMessages">All
                             messages</a>
-                        <a class="dropdown-item" href="{{ route('listFetchedEmailMessages') }}" id="btnListFetchedMessages">Fetched
+                        <a class="dropdown-item" href="{{ route('listFetchedEmailMessages') }}"
+                           id="btnListFetchedMessages">Fetched
                             messages</a>
                         <a class="dropdown-item" href="{{ route('listFailedEmailMessages') }}"
                            id="btnListFailedMessages">Failed
@@ -72,49 +73,45 @@
                     </div>
                 </div>
                 <br>
-                <div class="btn btn-primary btn-danger">Delete selected messages</div>
-                <br>
-                <br>
-                <table class="table">
-                    <caption>List of messages</caption>
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Recipient</th>
-                        <th scope="col">BCC</th>
-                        <th scope="col">CC</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">Sent_at</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($messages as $message)
+                <form method="POST" action="{{ route('deleteMail') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger" style="width:220px;">Delete selected messages
+                    </button>
+                    <br><br>
+                    <table class="table">
+                        <caption>List of messages</caption>
+                        <thead>
                         <tr>
-                            <th scope="row">{{ $message->id }}</th>
-                            <td>{{ $message->recipient_email }}</td>
-                            <td>{{ $message->recipient_bcc ?? '/'}}</td>
-                            <td>{{ $message->recipient_cc ?? '/'}}</td>
-                            <td>{{ $message->content ?? '/'}}</td>
-                            <td>{{ $message->content }}</td>
-                            <td>{{ $message->sent_at }}</td>
-                            <td>{{ $message->error ? 'fail' : 'success' }}</td>
-                            <td><input type="checkbox" aria-label="Checkbox for following text input">&nbsp;Delete?</td>
+                            <th scope="col">#</th>
+                            <th scope="col">Recipient</th>
+                            <th scope="col">BCC</th>
+                            <th scope="col">CC</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Content</th>
+                            <th scope="col">Sent_at</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
+                        </thead>
+                        <tbody>
+                        @foreach($messages as $message)
+                            <tr>
+                                <th scope="row">{{ $message->id }}</th>
+                                <td>{{ $message->recipient_email }}</td>
+                                <td>{{ $message->recipient_bcc ?? '/'}}</td>
+                                <td>{{ $message->recipient_cc ?? '/'}}</td>
+                                <td>{{ $message->content ?? '/'}}</td>
+                                <td>{{ $message->content }}</td>
+                                <td>{{ $message->sent_at }}</td>
+                                <td>{{ $message->error ? 'fail' : 'success' }}</td>
+                                <td><input type="checkbox" name="mailsToDelete[]" aria-label="Checkbox for following text input" value="{{ $message->id }}">&nbsp;Delete?
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    {{ $messages->links('pagination::bootstrap-4') }}
+                </form>
             </div>
         </div>
     </div>

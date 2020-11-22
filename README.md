@@ -1,5 +1,6 @@
 ## Requirements:
 - PHP >= 7.0
+- Laravel 8
 - composer
 - MAMP(MacOS)/WAMP/XAMPP/AMP(Ubuntu/Windows)
 

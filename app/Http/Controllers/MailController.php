@@ -6,7 +6,6 @@ use App\Http\Requests\MailRequest;
 use App\Mail\TrioptimaMail;
 use App\Models\EmailMessage;
 use App\Models\Message;
-use App\Models\SmsMessage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 

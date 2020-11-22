@@ -23,6 +23,7 @@ class CreateEmailMessagesTable extends Migration
             $table->text('error')->nullable();
             $table->timestamp('sent_at');
             $table->time('deleted_at')->nullable();
+            $table->integer('message_id');
             $table->timestamps();
         });
     }

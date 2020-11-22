@@ -56,59 +56,65 @@
                     </div>
                 @endif
 
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle btn-info" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Select a filter
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{ route('listAllMessages') }}" id="btnListAllMessages">All
-                                messages</a>
-                            <a class="dropdown-item" href="{{ route('listFetchedMessages') }}" id="btnListFetchedMessages">Fetched
-                                messages</a>
-                            <a class="dropdown-item" href="{{ route('listFailedMessages') }}"
-                               id="btnListFailedMessages">Failed
-                                messages</a>
-                        </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle btn-info" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select a filter
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ route('listAllEmailMessages') }}" id="btnListAllMessages">All
+                            messages</a>
+                        <a class="dropdown-item" href="{{ route('listFetchedEmailMessages') }}" id="btnListFetchedMessages">Fetched
+                            messages</a>
+                        <a class="dropdown-item" href="{{ route('listFailedEmailMessages') }}"
+                           id="btnListFailedMessages">Failed
+                            messages</a>
                     </div>
-                    <br>
-                    <div class="btn btn-primary btn-danger">Delete selected messages</div>
-                    <br>
-                    <br>
-                    <table class="table">
-                        <caption>List of messages</caption>
-                        <thead>
+                </div>
+                <br>
+                <div class="btn btn-primary btn-danger">Delete selected messages</div>
+                <br>
+                <br>
+                <table class="table">
+                    <caption>List of messages</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Recipient</th>
+                        <th scope="col">BCC</th>
+                        <th scope="col">CC</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Sent_at</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($messages as $message)
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Recipient</th>
-                            <th scope="col">Content</th>
-                            <th scope="col">Sent_at</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
+                            <th scope="row">{{ $message->id }}</th>
+                            <td>{{ $message->recipient_email }}</td>
+                            <td>{{ $message->recipient_bcc ?? '/'}}</td>
+                            <td>{{ $message->recipient_cc ?? '/'}}</td>
+                            <td>{{ $message->content ?? '/'}}</td>
+                            <td>{{ $message->content }}</td>
+                            <td>{{ $message->sent_at }}</td>
+                            <td>{{ $message->error ? 'fail' : 'success' }}</td>
+                            <td><input type="checkbox" aria-label="Checkbox for following text input">&nbsp;Delete?</td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($messages as $message)
-                            <tr>
-                                <th scope="row">{{ $message->id }}</th>
-                                <td>{{ $message->recipient_mobile }}</td>
-                                <td>{{ $message->content }}</td>
-                                <td>{{ $message->sent_at }}</td>
-                                <td>{{ $message->error ? 'success' : 'failed' }}</td>
-                                <td><input type="checkbox" aria-label="Checkbox for following text input">&nbsp;Delete?</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </nav>
+                    @endforeach
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

@@ -7,18 +7,11 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Laravel SMS Send</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
@@ -26,8 +19,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-light navbar-light">
     <a class="navbar-brand" href="#"><b>Trioptima</b></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -44,35 +36,40 @@
     <div class="row" style="margin-top: 80px;">
 
         <div class="col-md-12">
-            @if(session()->has('error'))
+            @if ($errors->any())
                 <div class="alert alert-danger">
-                    {{ session()->get('error') }}
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
-            @if(session()->has('message'))
+
+
+        @if(session()->has('message'))
                 <div class="alert alert-success">
                     {{ session()->get('message') }}
                 </div>
             @endif
 
-            <form action="{{ url('send-email') }}" method="post">
-                {{csrf_field()}}
-                <div class="form-group">
-                    <h4>Send email</h4>
-                    <p>Please submit a valid e-mail address and the email's content to sent a message.</p>
-                    <input type="text" name="email" class="form-control" id="email" placeholder="Email">
-                    <br>
-                    <input type="text" name="subject" class="form-control" id="subject" placeholder="Subject">
-                    <br>
-                    <input type="text" name="cc_recipient" class="form-control" id="cc_recipient" placeholder="CC">
-                    <br>
-                    <input type="text" name="bcc_recipient" class="form-control" id="bcc_recipient" placeholder="BCC">
-                    <br>
-                    <textarea name="emailContent" class="form-control" rows="4" id="summernote"
-                              placeholder="emailContent"></textarea>
-                </div>
-                <button type="submit" class="btn btn-info">Send email</button>
-            </form>
+                <form action="{{ url('send-email') }}" method="post">
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        <h4>Send email</h4>
+                        <p>Please submit a valid e-mail address and the email's content to sent a message.</p>
+                        <input type="text" name="email" class="form-control" id="email" placeholder="Email">
+                        <br>
+                        <input type="text" name="subject" class="form-control" id="subject" placeholder="Subject">
+                        <br>
+                        <input type="text" name="cc_recipient" class="form-control" id="cc_recipient" placeholder="CC">
+                        <br>
+                        <input type="text" name="bcc_recipient" class="form-control" id="bcc_recipient" placeholder="BCC">
+                        <br>
+                        <textarea name="emailContent" class="form-control" rows="4" id="summernote" placeholder="emailContent"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-info">Send email</button>
+                </form>
         </div>
     </div>
 </div>
@@ -81,7 +78,7 @@
     $('#summernote').summernote({
         placeholder: 'Emails content goes here...',
         tabsize: 2,
-        height: 200,
-    })
+        height: 200
+    });
 </script>
 </html>

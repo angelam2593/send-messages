@@ -20,7 +20,7 @@ class CreateEmailMessagesTable extends Migration
             $table->string('recipient_email');
             $table->string('recipient_cc')->nullable();
             $table->string('recipient_bcc')->nullable();
-            $table->text('error')->nullable();
+            $table->boolean('error')->nullable();
             $table->timestamp('sent_at');
             $table->integer('message_id')->unsigned();
             $table->softDeletes();

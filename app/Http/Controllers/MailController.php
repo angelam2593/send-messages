@@ -8,6 +8,7 @@ use App\Models\EmailMessage;
 use App\Models\Message;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -40,7 +41,8 @@ class MailController extends Controller
             return redirect()->back()->with('message', 'Email was sent');
         } catch (\Exception $exception) {
 
-            $this->saveEmail(false, $request, $exception);
+            $this->saveEmail(false, $request, true);
+            Log::error($exception);
 
             return redirect()->back()->with('error', 'Email failed to be sent');
         }

@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\SmsMessage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Nexmo\Laravel\Facade\Nexmo;
 
 class SmsController extends Controller
@@ -28,7 +29,8 @@ class SmsController extends Controller
             return redirect()->back()->with('message', 'Sms was sent');
         } catch (\Exception $exception) {
 
-            $this->saveSms(false, $request, $exception);
+            $this->saveSms(false, $request, true);
+            Log::error($exception);
 
             return redirect()->back()->with('error', 'Sending the SMS failed');
         }

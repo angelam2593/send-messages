@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SmsRequest;
-use App\Models\EmailMessage;
 use App\Models\Message;
 use App\Models\SmsMessage;
 use Carbon\Carbon;

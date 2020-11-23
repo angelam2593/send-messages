@@ -55,6 +55,11 @@
                         {{ session()->get('message') }}
                     </div>
                 @endif
+                @if(session()->has('error'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
 
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle btn-info" type="button" id="dropdownMenuButton"
@@ -73,35 +78,40 @@
                     </div>
                 </div>
                 <br>
-                <div class="btn btn-primary btn-danger">Delete selected messages</div>
-                <br>
-                <br>
-                <table class="table">
-                    <caption>List of messages</caption>
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Recipient</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">Sent_at</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($messages as $message)
+                <form method="POST" action="{{ route('deleteSms') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger" style="width:220px;">Delete selected messages
+                    </button>
+                    <br><br>
+
+                    <table class="table">
+                        <caption>List of messages</caption>
+                        <thead>
                         <tr>
-                            <th scope="row">{{ $message->id }}</th>
-                            <td>{{ $message->recipient_mobile }}</td>
-                            <td>{{ $message->content }}</td>
-                            <td>{{ $message->sent_at }}</td>
-                            <td>{{ $message->error ? 'success' : 'failed' }}</td>
-                            <td><input type="checkbox" aria-label="Checkbox for following text input">&nbsp;Delete?</td>
+                            <th scope="col">#</th>
+                            <th scope="col">Recipient</th>
+                            <th scope="col">Content</th>
+                            <th scope="col">Sent_at</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-                    {{ $messages->links('pagination::bootstrap-4') }}
+                        </thead>
+                        <tbody>
+                        @foreach($messages as $message)
+                            <tr>
+                                <th scope="row">{{ $message->id }}</th>
+                                <td>{{ $message->recipient_mobile }}</td>
+                                <td>{{ $message->content }}</td>
+                                <td>{{ $message->sent_at }}</td>
+                                <td>{{ $message->error ? 'success' : 'failed' }}</td>
+                                <td><input type="checkbox" name="smsToDelete[]"
+                                           aria-label="Checkbox for following text input" value="{{ $message->id }}">&nbsp;Delete?
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </form>
+                {{ $messages->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>

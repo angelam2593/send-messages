@@ -55,6 +55,11 @@
                         {{ session()->get('message') }}
                     </div>
                 @endif
+                @if(session()->has('error'))
+                    <div class="alert alert-danger">
+                        {{ session()->get('error') }}
+                    </div>
+                @endif
 
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle btn-info" type="button" id="dropdownMenuButton"
@@ -104,7 +109,8 @@
                                 <td>{{ $message->content }}</td>
                                 <td>{{ $message->sent_at }}</td>
                                 <td>{{ $message->error ? 'fail' : 'success' }}</td>
-                                <td><input type="checkbox" name="mailsToDelete[]" aria-label="Checkbox for following text input" value="{{ $message->id }}">&nbsp;Delete?
+                                <td><input type="checkbox" name="mailsToDelete[]"
+                                           aria-label="Checkbox for following text input" value="{{ $message->id }}">&nbsp;Delete?
                                 </td>
                             </tr>
                         @endforeach

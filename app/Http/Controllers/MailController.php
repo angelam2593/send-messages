@@ -83,7 +83,7 @@ class MailController extends Controller
 
     public function listFetchedEmailMessages()
     {
-        $messages = EmailMessage::whereNotNull('error')->paginate(5);
+        $messages = EmailMessage::whereNull('error')->paginate(5);
 
         return view('listEmailMessages')->with('messages', $messages);
     }
@@ -91,7 +91,7 @@ class MailController extends Controller
 
     public function listFailedEmailMessages()
     {
-        $messages = EmailMessage::whereNull('error')->paginate(5);
+        $messages = EmailMessage::whereNotNull('error')->paginate(5);
 
         return view('listEmailMessages')->with('messages', $messages);
     }
@@ -99,6 +99,19 @@ class MailController extends Controller
 
     public function deleteMail(Request $request)
     {
+        if (!isset($request->all()['mailsToDelete'])) {
+            return redirect()->back()->with('error', 'No selected e-mail messages to delete');
+        }
 
+        $mailsToDelete = $request->all()['mailsToDelete'];
+        foreach ($mailsToDelete as $id) {
+            $mail = EmailMessage::findOrFail($id);
+            Message::findOrFail($mail->message_id)->delete();
+            $mail->delete();
+        }
+
+        $messages = EmailMessage::paginate(5);
+
+        return view('listEmailMessages')->with('messages', $messages);
     }
 }

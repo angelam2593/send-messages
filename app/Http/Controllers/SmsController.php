@@ -7,6 +7,7 @@ use App\Models\EmailMessage;
 use App\Models\Message;
 use App\Models\SmsMessage;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Nexmo\Laravel\Facade\Nexmo;
 
 class SmsController extends Controller
@@ -68,7 +69,7 @@ class SmsController extends Controller
 
     public function listFetchedSmsMessages()
     {
-        $messages = SmsMessage::whereNotNull('error')->paginate(5);
+        $messages = SmsMessage::whereNull('error')->paginate(5);
 
         return view('listSmsMessages')->with('messages', $messages);
     }
@@ -76,7 +77,26 @@ class SmsController extends Controller
 
     public function listFailedSmsMessages()
     {
-        $messages = SmsMessage::whereNull('error')->paginate(5);
+        $messages = SmsMessage::whereNotNull('error')->paginate(5);
+
+        return view('listSmsMessages')->with('messages', $messages);
+    }
+
+
+    public function deleteSms(Request $request)
+    {
+        if (!isset($request->all()['smsToDelete'])) {
+            return redirect()->back()->with('error', 'No selected SMS messages to delete');
+        }
+
+        $smsToDelete = $request->all()['smsToDelete'];
+        foreach ($smsToDelete as $id) {
+            $mail = SmsMessage::findOrFail($id);
+            Message::findOrFail($mail->message_id)->delete();
+            $mail->delete();
+        }
+
+        $messages = SmsMessage::paginate(5);
 
         return view('listSmsMessages')->with('messages', $messages);
     }

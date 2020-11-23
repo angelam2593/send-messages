@@ -27,10 +27,8 @@ class CreateEmailMessagesTable extends Migration
             $table->timestamps();
         });
 
-        //Schema::table('email_messages', function($table) {
-        //   $table->foreign('message_id')->references('id')->on('messages');
-        //});
     }
+
 
     /**
      * Reverse the migrations.

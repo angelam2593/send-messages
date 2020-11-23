@@ -34,4 +34,4 @@ Route::get('/sms', SmsController::class.'@indexSms')->name('sms');
 Route::get('/list-all-sms-messages', SmsController::class.'@listAllSmsMessages')->name('listAllSmsMessages');
 Route::get('/list-fetched-sms-messages', SmsController::class.'@listFetchedSmsMessages')->name('listFetchedSmsMessages');
 Route::get('/list-failed-sms-messages', SmsController::class.'@listFailedSmsMessages')->name('listFailedSmsMessages');
-Route::delete('/delete-sms', SmsController::class.'@deleteSms')->name('deleteSms');
+Route::post('/delete-sms', SmsController::class.'@deleteSms')->name('deleteSms');

@@ -19,7 +19,7 @@ class CreateSmsMessagesTable extends Migration
             $table->string('recipient_mobile');
             $table->timestamp('sent_at');
             $table->text('error')->nullable();
-            $table->integer('message_id');
+            $table->integer('message_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

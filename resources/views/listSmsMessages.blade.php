@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Laravel SMS Send</title>
+    <title>Laravel sending messages</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -122,32 +121,5 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 <script>
-    // $('#btnListAllMessages').click(function(e) {
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: 'http://127.0.0.1:8000/list-all-messages/',
-    //         success: function(msg) {
-    //             console.log(msg)
-    //         },
-    //     })
-    // })
-    // $('#btnListFetchedMessages').click(function(e) {
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: 'http://127.0.0.1:8000/list-fetched-messages/',
-    //         success: function(msg) {
-    //             console.log(msg)
-    //         },
-    //     })
-    // })
-    // $('#btnListFailedMessages').click(function(e) {
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: 'http://127.0.0.1:8000/list-failed-messages/',
-    //         success: function(msg) {
-    //             console.log(msg)
-    //         },
-    //     })
-    // })
 </script>
 </html>

@@ -14,12 +14,12 @@ class CreateSmsMessagesTable extends Migration
     public function up()
     {
         Schema::create('sms_messages', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('content');
             $table->string('recipient_mobile');
             $table->timestamp('sent_at');
             $table->text('error')->nullable();
-            $table->integer('message_id');
+            $table->integer('message_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

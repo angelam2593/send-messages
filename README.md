@@ -19,7 +19,7 @@ php artisan migrate
 ```
 ### Setup .env file
 **NEXMO_KEY** and **NEXMO_SECRET** from Nexmo API <br>
-**DB_DATABASE** , **DB_USERNAME**  and **DB_PASSWORD** create database messages_db and insert the name in DB_DATABASE, for mac DB_USERNAME and DB_PASSWORD are usually both root
+**DB_DATABASE** , **DB_USERNAME**  and **DB_PASSWORD** create database messages_db and insert the name in DB_DATABASE, for Mac DB_USERNAME and DB_PASSWORD are usually both root
 ### Serves Laravel on the development server
 ```
 php artisan serve
